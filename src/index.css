@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Dark theme (default) - Developer Purple */
+    --background: 220 25% 8%;
+    --foreground: 0 0% 95%;
+    --card: 220 20% 12%;
+    --card-foreground: 0 0% 95%;
+    --popover: 220 20% 10%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 265 89% 65%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 15% 18%;
+    --secondary-foreground: 0 0% 95%;
+    --muted: 220 15% 20%;
+    --muted-foreground: 220 10% 60%;
+    --accent: 265 89% 65%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 15% 20%;
+    --input: 220 15% 18%;
+    --ring: 265 89% 65%;
+    --radius: 1rem;
+    
+    /* Custom colors */
+    --purple: 265 89% 65%;
+    --purple-glow: 265 89% 65%;
+    --cyan: 190 95% 55%;
+    --pink: 330 95% 65%;
+  }
+
+  .light {
+    --background: 0 0% 98%;
+    --foreground: 220 25% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 25% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 25% 12%;
+    --primary: 265 89% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 15% 94%;
+    --secondary-foreground: 220 25% 12%;
+    --muted: 220 15% 92%;
+    --muted-foreground: 220 10% 45%;
+    --accent: 265 89% 55%;
+    --accent-foreground: 0 0% 100%;
+    --border: 220 15% 88%;
+    --input: 220 15% 90%;
+    --ring: 265 89% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+  }
+  code, pre {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.8);
+}
+
+/* Gradient backgrounds */
+.gradient-bg {
+  background: linear-gradient(135deg, hsl(220 25% 8%) 0%, hsl(265 50% 12%) 50%, hsl(220 25% 8%) 100%);
+}
+
+.gradient-bg-light {
+  background: linear-gradient(135deg, hsl(0 0% 98%) 0%, hsl(265 30% 96%) 50%, hsl(0 0% 98%) 100%);
+}
+
+/* Glow effects */
+.glow-purple {
+  box-shadow: 0 0 40px hsl(265 89% 65% / 0.3);
+}
+
+.glow-text {
+  text-shadow: 0 0 30px hsl(265 89% 65% / 0.5);
+}
+
+/* Card styles */
+.glass-card {
+  @apply backdrop-blur-xl border border-white/10;
+  background: hsl(var(--card) / 0.8);
+}
+
+.light .glass-card {
+  @apply border-black/5;
+  background: hsl(var(--card) / 0.9);
+}
+
+/* Button styles */
+.btn-primary {
+  @apply px-6 py-3 rounded-xl font-semibold transition-all duration-300;
+  background: linear-gradient(135deg, hsl(265 89% 65%) 0%, hsl(290 89% 60%) 100%);
+  color: white;
+  box-shadow: 0 4px 20px hsl(265 89% 65% / 0.4);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px hsl(265 89% 65% / 0.5);
+}
+
+.btn-secondary {
+  @apply px-6 py-3 rounded-xl font-semibold border-2 transition-all duration-300;
+  border-color: hsl(var(--primary));
+  color: hsl(var(--primary));
+  background: transparent;
+}
+
+.btn-secondary:hover {
+  background: hsl(var(--primary) / 0.1);
+  transform: translateY(-2px);
+}
+
+/* Label badge for customization */
+.label-badge {
+  @apply inline-flex items-center px-2.5 py-1 rounded-md text-[10px] font-bold tracking-wider uppercase;
+  background: hsl(var(--primary) / 0.15);
+  color: hsl(var(--primary));
+  border: 1px solid hsl(var(--primary) / 0.3);
+}
+
+/* Progress bar animation */
+@keyframes progressFill {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.progress-animate {
+  animation: progressFill 1.2s ease-out forwards;
+  transform-origin: left;
+}
+
+/* Code block styling */
+.code-block {
+  @apply rounded-lg p-4 font-mono text-sm;
+  background: hsl(220 25% 6%);
+  border: 1px solid hsl(220 15% 20%);
+}
+
+/* Grid pattern background */
+.grid-pattern {
+  background-image: 
+    linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Pulse glow */
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 20px hsl(265 89% 65% / 0.3); }
+  50% { box-shadow: 0 0 40px hsl(265 89% 65% / 0.6); }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+/* Filter tabs */
+.filter-tab {
+  @apply px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 cursor-pointer;
+  background: hsl(var(--muted));
+  color: hsl(var(--muted-foreground));
+}
+
+.filter-tab:hover {
+  background: hsl(var(--primary) / 0.1);
+  color: hsl(var(--primary));
+}
+
+.filter-tab.active {
+  background: hsl(var(--primary));
+  color: white;
+}
+
+/* Project card hover */
+.project-card {
+  @apply relative overflow-hidden rounded-2xl transition-all duration-500;
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+}
+
+.project-card::before {
+  content: '';
+  @apply absolute inset-0 opacity-0 transition-opacity duration-500;
+  background: linear-gradient(180deg, transparent 0%, hsl(var(--primary) / 0.2) 100%);
+}
+
+.project-card:hover::before {
+  opacity: 1;
+}
+
+/* Skill bar gradient */
+.skill-bar {
+  background: linear-gradient(90deg, hsl(265 89% 65%) 0%, hsl(190 95% 55%) 100%);
+}
+
+/* Navigation blur */
+.nav-blur {
+  @apply backdrop-blur-xl;
+  background: hsl(var(--background) / 0.8);
+}
